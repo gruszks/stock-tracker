@@ -1,11 +1,12 @@
 export const FETCH_COMPANY = 'FETCH_COMPANY';
 export const FETCH_COMPANY_DONE = 'FETCH_COMPANY_DONE';
 export const FETCH_COMPANY_FAILED = 'FETCH_COMPANY_FAILED';
+export const ADD_COMPANY = 'ADD_COMPANY';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
 
-export const fetchCompany = (id) => ({
+export const fetchCompany = (symbol) => ({
   type: FETCH_COMPANY,
-  id,
+  symbol,
 });
 
 export const fetchCompanyDone = (data) => ({
@@ -18,7 +19,13 @@ export const fetchCompanyFailed = (error) => ({
   error,
 });
 
-export const deleteCompany = (id) => ({
+export const deleteCompany = (symbol) => ({
   type: DELETE_COMPANY,
-  id,
+  symbol,
+});
+
+export const addCompany = (symbol, data) => ({
+  type: ADD_COMPANY,
+  symbol,
+  data,
 });

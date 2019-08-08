@@ -1,16 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import SiteContent from 'components/site-content';
-import * as Styled from './companies.styles.js';
+import CompaniesList from 'component/companies-list';
+import { deleteCompany } from 'actions.js';
 
-const Companies = () => (
-  <SiteContent title="Companies">
-    <p>
-      There are no companies yet.{' '}
-      <Link to="/companies/add/">Track your first company</Link>.
-    </p>
-  </SiteContent>
-);
+class Companies extends PureComponent {
+  render() {
+    const { companies, onDeleteCompany } = this.props;
 
-export default Companies;
+    return (
+      <SiteContent title="Companies">
+        {!Object.keys(companies).length ? (
+          <p>
+            There are no companies yet.{' '}
+            <Link to="/companies/add/">Track your first company</Link>.
+          </p>
+        ) : (
+          <CompaniesList data={companies} onDeleteCompany={onDeleteCompany} />
+        )}
+      </SiteContent>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  companies: state.companies.selected,
+});
+
+const mapDispatchToProps = {
+  onDeleteCompany: deleteCompany,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Companies);

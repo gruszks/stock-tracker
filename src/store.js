@@ -18,5 +18,6 @@ export default function configureStore(preloadedState) {
 
   const store = createStore(reducer, preloadedState, composedEnhancers);
   sagaMiddleware.run(rootSaga);
+
   return store;
 }

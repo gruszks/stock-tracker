@@ -1,19 +1,21 @@
-import { call, put, takeEvery, delay } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
-export function* helloSaga() {
-  console.log('Hello Saga!');
-}
+// import { searchCompaniesDone, searchCompaniesFailed } from 'actions';
+import Api from 'api';
 
-export function* incrementAsync() {
-  yield call(delay, 1000);
-  yield put({ type: 'INCREMENT' });
-}
-
-export function* watchIncrementAsync() {
-  yield takeEvery('INCREMENT_ASYNC', incrementAsync);
-}
+// export function* searchCompanies({ symbol }) {
+//   try {
+//     const response = yield call(
+//       Api.get.bind(Api),
+//       `/query?function=SYMBOL_SEARCH&keywords=${symbol}`
+//     );
+//     yield put(searchCompaniesDone(response));
+//   } catch (error) {
+//     yield put(searchCompaniesFailed());
+//   }
+// }
 
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
-  yield [helloSaga(), watchIncrementAsync()];
+  // yield takeLatest(SEARCH_COMPANIES, searchCompanies);
 }

@@ -8,13 +8,14 @@ class Api {
     },
   });
 
-  static get(path, params = {}) {
-    return this.client.get(path, { params }).then((response) => response.data);
+  static get(path, config = {}) {
+    return this.client.get(path, config).then((response) => response.data);
   }
 }
 
+Api.client.defaults.params = {};
 Api.client.interceptors.request.use((config) => {
-  config.params['apikey'] = process.env.REACT_APP_API_KEY;
+  config.params.apikey = process.env.REACT_APP_API_KEY;
   return config;
 });
 

@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import loadable from '@loadable/component';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { GlobalStyle } from './app.styles';
+import SiteHeader from './components/site-header';
+
+const Companies = loadable(() => import('./views/companies'));
+const AddNewCompany = loadable(() => import('./views/add-new-company'));
+const NoMatch = loadable(() => import('./views/no-match'));
+
+const App = () => (
+  <>
+    <GlobalStyle />
+    <Router>
+      <SiteHeader />
+      <Switch>
+        <Route path="/" exact component={Companies} />
+        <Route path="/companies/add/" component={AddNewCompany} />
+        <Route path="/companies/" component={Companies} />
+        <Route component={NoMatch} />
+      </Switch>
+    </Router>
+  </>
+);
 
 export default App;

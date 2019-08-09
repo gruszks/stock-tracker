@@ -30,3 +30,8 @@ Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 ### `npm run build-storybook`
 
 Builds the storybook app for production to the `storybook-static` folder.
+
+## TODO
+- [ ] Add unit tests using jest / enzyme
+- [ ] Add more storybook stories
+- [ ] Handle some edge cases eg. exceed API limit

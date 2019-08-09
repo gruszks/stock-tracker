@@ -16,6 +16,10 @@ export const prepareCompanyData = (
     currency: searchResponse['8. currency'],
     image: null,
     domain: null,
+    price: null,
+    tradingDay: null,
+    change: null,
+    changePercent: null,
   };
 
   if (infoResponse.length) {
@@ -26,10 +30,12 @@ export const prepareCompanyData = (
   if (quoteResponse) {
     const quoteData = quoteResponse['Global Quote'];
 
-    data.price = quoteData['05. price'];
+    data.price = Number(quoteData['05. price']);
     data.tradingDay = quoteData['07. latest trading day'];
-    data.change = quoteData['09. change'];
-    data.changePercent = quoteData['10. change percent'];
+    data.change = Number(quoteData['09. change']);
+    data.changePercent = Number(
+      quoteData['10. change percent'].replace('%', '')
+    );
   }
 
   return data;

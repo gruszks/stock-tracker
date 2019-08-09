@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -16,10 +15,10 @@ const companies = [
     currency: 'USD',
     image: 'https://logo.clearbit.com/worldpay.com',
     domain: 'worldpay.com',
-    price: '135.0000',
+    price: 135.0,
     tradingDay: '2019-07-30',
-    change: '-2.8500',
-    changePercent: '-2.0675%',
+    change: -2.85,
+    changePercent: -2.0675,
   },
   {
     symbol: 'FB',
@@ -31,10 +30,10 @@ const companies = [
     currency: 'USD',
     image: 'https://logo.clearbit.com/facebook.com',
     domain: 'facebook.com',
-    price: '188.4100',
+    price: 188.41,
     tradingDay: '2019-08-09',
-    change: '-1.7500',
-    changePercent: '-0.9203%',
+    change: 1.75,
+    changePercent: 0.9203,
   },
   {
     symbol: '7CD.FRK',
@@ -46,10 +45,10 @@ const companies = [
     currency: 'EUR',
     image: 'https://logo.clearbit.com/cdprojekt.com',
     domain: 'cdprojekt.com',
-    price: '51.3800',
+    price: 51.38,
     tradingDay: '2019-08-09',
-    change: '-0.1800',
-    changePercent: '-0.3491%',
+    change: -0.18,
+    changePercent: -0.3491,
   },
   {
     symbol: 'IMSAX',
@@ -61,10 +60,10 @@ const companies = [
     currency: 'USD',
     image: null,
     domain: null,
-    price: '16.4500',
+    price: 16.45,
     tradingDay: '2019-08-07',
-    change: '0.0300',
-    changePercent: '0.1827%',
+    change: 0.03,
+    changePercent: 0.1827,
   },
 ];
 

@@ -166,4 +166,8 @@ export const GlobalStyle = createGlobalStyle`
     height: auto;
     max-width: 100%;
   }
+
+  strong {
+    font-weight: 700;
+  }
 `;

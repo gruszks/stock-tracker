@@ -6,21 +6,19 @@ import CompanyListItem from 'components/company-list-item';
 import * as Styled from './company-list.styles';
 
 const CompanyList = ({ data, onDeleteCompany }) => {
-  const keys = Object.keys(data);
-
   return (
     <div>
-      {!keys.length ? (
+      {!data.length ? (
         <p>
           There are no companies yet.{' '}
           <Link to="/companies/add/">Track your first company</Link>.
         </p>
       ) : (
         <Styled.List>
-          {keys.map((symbol) => (
+          {data.map((company) => (
             <CompanyListItem
-              key={symbol}
-              data={data[symbol]}
+              key={company.symbol}
+              data={company}
               onDeleteCompany={onDeleteCompany}
             />
           ))}

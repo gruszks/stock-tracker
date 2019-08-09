@@ -38,6 +38,13 @@ export const Delete = styled.button`
   display: none;
 `;
 
+export const State = styled.span`
+  margin-right: 0;
+
+  ${({ state }) => state === 'up' && `color: #00CC00`};
+  ${({ state }) => state === 'down' && `color: #FF0000`};
+`;
+
 export const Item = styled.li`
   display: grid;
   grid-template-columns: 64px 1fr auto;
@@ -48,8 +55,13 @@ export const Item = styled.li`
   align-items: center;
 
   span {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-right: 5px;
+
+    img {
+      margin-left: 5px;
+    }
   }
 
   &:hover ${Delete} {

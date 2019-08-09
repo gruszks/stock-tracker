@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import DeleteIcon from 'assets/delete.png';
+import UpIcon from 'assets/up.png';
+import DownIcon from 'assets/down.png';
 import * as Styled from './company-list-item.styles';
 
 const CompanyListItem = ({ data, onDeleteCompany }) => {
@@ -20,6 +22,7 @@ const CompanyListItem = ({ data, onDeleteCompany }) => {
     change,
     changePercent,
   } = data;
+  const state = change === 0 ? 'stable' : change > 0 ? 'up' : 'down';
 
   return (
     <Styled.Item key={symbol}>
@@ -36,12 +39,18 @@ const CompanyListItem = ({ data, onDeleteCompany }) => {
           <span>{timezone}</span>
         </div>
         <div>
-          <span>
-            <strong>{price}</strong>
+          <span title={price}>
+            <strong>{price.toFixed(2)}</strong>
           </span>
           <span>{currency}</span>
-          <span>{change}</span>
-          <span>{changePercent}</span>
+          <Styled.State state={state}>
+            <span title={change}>{change.toFixed(2)}</span>
+            <span title={`${changePercent}%`}>
+              ({changePercent.toFixed(2)}%){' '}
+              {state === 'up' && <img src={UpIcon} alt="up" />}
+              {state === 'down' && <img src={DownIcon} alt="down" />}
+            </span>
+          </Styled.State>
           <span>Closed: {tradingDay}</span>
         </div>
       </Styled.Content>

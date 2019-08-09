@@ -11,18 +11,18 @@ class Companies extends PureComponent {
   }
 
   render() {
-    const { companies, onDeleteCompany } = this.props;
+    const { data, onDeleteCompany } = this.props;
 
     return (
       <SiteContent title="Companies">
-        <CompanyList data={companies} onDeleteCompany={onDeleteCompany} />
+        <CompanyList data={data} onDeleteCompany={onDeleteCompany} />
       </SiteContent>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  companies: state.companies.selected,
+  data: state.companies.data,
 });
 
 const mapDispatchToProps = {

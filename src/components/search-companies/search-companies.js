@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 import debounce from 'lodash/debounce';
 import isEqual from 'react-fast-compare';

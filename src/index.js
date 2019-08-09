@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import debounce from 'lodash/debounce';
 
 import App from './app';
 import configureStore from './store';
@@ -11,9 +12,11 @@ const persistedState = localStorage.getItem('reduxState')
   : {};
 const store = configureStore(persistedState);
 
-store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
+store.subscribe(
+  debounce(() => {
+    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+  }, 100)
+);
 
 ReactDOM.render(
   <Provider store={store}>

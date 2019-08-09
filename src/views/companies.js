@@ -6,6 +6,10 @@ import CompanyList from 'components/company-list';
 import { deleteCompany } from 'actions.js';
 
 class Companies extends PureComponent {
+  componentDidMount() {
+    console.log('mounting');
+  }
+
   render() {
     const { companies, onDeleteCompany } = this.props;
 

@@ -2,8 +2,11 @@ import styled, { css } from 'styled-components/macro';
 
 export const Form = styled.form`
   display: grid;
-  width: 50%;
   grid-row-gap: 15px;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const Label = styled.label`

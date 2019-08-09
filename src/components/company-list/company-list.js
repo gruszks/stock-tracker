@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import CompanyListItem from 'components/company-list-item';
+import * as Styled from './company-list.styles';
 
 const CompanyList = ({ data, onDeleteCompany }) => {
   const keys = Object.keys(data);
@@ -14,7 +16,7 @@ const CompanyList = ({ data, onDeleteCompany }) => {
           <Link to="/companies/add/">Track your first company</Link>.
         </p>
       ) : (
-        <ul>
+        <Styled.List>
           {keys.map((symbol) => (
             <CompanyListItem
               key={symbol}
@@ -22,10 +24,15 @@ const CompanyList = ({ data, onDeleteCompany }) => {
               onDeleteCompany={onDeleteCompany}
             />
           ))}
-        </ul>
+        </Styled.List>
       )}
     </div>
   );
+};
+
+CompanyList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDeleteCompany: PropTypes.func.isRequired,
 };
 
 export default CompanyList;

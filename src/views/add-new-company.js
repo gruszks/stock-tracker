@@ -25,11 +25,20 @@ class AddNewCompany extends Component {
     const { onAddCompany } = this.props;
     const { symbol, company } = values;
 
-    onAddCompany(symbol, company);
-    this.setState({ company });
-    resetForm(this.initialValues);
-    this.downshiftRef.current.clearSelection();
-    setSubmitting(false);
+    onAddCompany(
+      symbol,
+      company,
+      () => {
+        this.setState({ company });
+        resetForm(this.initialValues);
+        this.downshiftRef.current.clearSelection();
+        setSubmitting(false);
+      },
+      // TODO: Better handle the errors
+      () => {
+        setSubmitting(false);
+      }
+    );
   };
 
   render() {

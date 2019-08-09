@@ -161,4 +161,9 @@ export const GlobalStyle = createGlobalStyle`
       color: #000;
     }
   }
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
 `;

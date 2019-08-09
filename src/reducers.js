@@ -1,21 +1,26 @@
 import { combineReducers } from 'redux';
 import produce from 'immer';
 
-import { ADD_COMPANY, DELETE_COMPANY } from 'actions';
+import { ADD_COMPANY_DONE, DELETE_COMPANY } from 'actions';
 
 const initialState = {
-  selected: {},
+  selected: [],
 };
 
 const companies = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case ADD_COMPANY:
-        draft.selected[action.symbol] = action.data;
+      case ADD_COMPANY_DONE:
+        draft.selected.push(action.company);
         break;
 
       case DELETE_COMPANY:
-        delete draft.selected[action.symbol];
+        draft.selected.splice(
+          draft.selected.findIndex(
+            (company) => company.symbol === action.symbol
+          ),
+          1
+        );
         break;
 
       // no default

@@ -1,27 +1,66 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import DeleteIcon from 'assets/delete.png';
+import * as Styled from './company-list-item.styles';
 
 const CompanyListItem = ({ data, onDeleteCompany }) => {
   const {
-    '1. symbol': symbol,
-    '2. name': name,
-    '4. region': region,
-    '5. marketOpen': marketOpen,
-    '6. marketClose': marketClose,
-    '7. timezone': timezone,
-    '8. currency': currency,
+    symbol,
+    name,
+    region,
+    marketOpen,
+    marketClose,
+    timezone,
+    currency,
+    image,
+    domain,
+    price,
+    tradingDay,
+    change,
+    changePercent,
   } = data;
 
   return (
-    <li key={symbol}>
-      <h3>{name}</h3> {symbol}
-      {region} {marketOpen} - {marketClose} {timezone}
-      {currency}
-      <picture>
-        <img src="" alt="" />
-      </picture>
-      <button onClick={() => onDeleteCompany(symbol)}>Remove</button>
-    </li>
+    <Styled.Item key={symbol}>
+      <Styled.Content>
+        <div>
+          <Styled.Name>{name}</Styled.Name>
+          <span>{symbol}</span> <span>{domain}</span>
+        </div>
+        <div>
+          <span>{region}</span>
+          <span>
+            {marketOpen} - {marketClose}
+          </span>
+          <span>{timezone}</span>
+        </div>
+        <div>
+          <span>
+            <strong>{price}</strong>
+          </span>
+          <span>{currency}</span>
+          <span>{change}</span>
+          <span>{changePercent}</span>
+          <span>Closed: {tradingDay}</span>
+        </div>
+      </Styled.Content>
+      {image ? (
+        <Styled.Image src={image} alt={name} />
+      ) : (
+        <Styled.NoImage>no image</Styled.NoImage>
+      )}
+
+      <Styled.Delete onClick={() => onDeleteCompany(symbol)}>
+        <img src={DeleteIcon} alt="Delete" />
+      </Styled.Delete>
+    </Styled.Item>
   );
+};
+
+CompanyListItem.propTypes = {
+  data: PropTypes.object.isRequired,
+  onDeleteCompany: PropTypes.func.isRequired,
 };
 
 export default CompanyListItem;

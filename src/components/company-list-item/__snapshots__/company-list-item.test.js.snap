@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should renders correctly 1`] = `
+<DocumentFragment>
+  <li
+    class="company-list-itemstyles__Item-sc-1snnccw-6 hXRuc"
+  >
+    <div
+      class="company-list-itemstyles__Content-sc-1snnccw-3 dgUIOo"
+    >
+      <div>
+        <h3
+          class="company-list-itemstyles__Name-sc-1snnccw-2 doaeAC"
+        >
+          Facebook Inc.
+        </h3>
+        <span>
+          FB
+        </span>
+         
+        <span>
+          facebook.com
+        </span>
+      </div>
+      <div>
+        <span>
+          United States
+        </span>
+        <span>
+          09:30 - 16:00
+        </span>
+        <span>
+          UTC-04
+        </span>
+      </div>
+      <div>
+        <span
+          title="189.04"
+        >
+          <strong>
+            189.04
+          </strong>
+        </span>
+        <span>
+          USD
+        </span>
+        <span
+          class="company-list-itemstyles__State-sc-1snnccw-5 dDPulx"
+        >
+          <span
+            title="1.12"
+          >
+            1.12
+          </span>
+          <span
+            title="0.589%"
+          >
+            (0.59%) 
+            <img
+              alt="up"
+              src="up.png"
+            />
+          </span>
+        </span>
+        <span>
+          Closed: 2019-08-09
+        </span>
+      </div>
+    </div>
+    <img
+      alt="Facebook Inc."
+      class="company-list-itemstyles__Image-sc-1snnccw-0 dOLemJ"
+      src="https://logo.clearbit.com/facebook.com"
+    />
+    <button
+      class="company-list-itemstyles__Delete-sc-1snnccw-4 hitWzm"
+    >
+      <img
+        alt="Delete"
+        src="delete.png"
+      />
+    </button>
+  </li>
+</DocumentFragment>
+`;

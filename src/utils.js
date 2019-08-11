@@ -1,6 +1,23 @@
 export const prepareCompanyNameForImageSearch = (name) =>
   name.replace(/\s(l\.p\.|inc\.|inc)/i, '');
 
+export const extractQuoteData = (quoteResponse) => {
+  const data = {};
+
+  if (Object.keys(quoteResponse).length) {
+    const quoteData = quoteResponse['Global Quote'];
+
+    data.price = Number(quoteData['05. price']);
+    data.tradingDay = quoteData['07. latest trading day'];
+    data.change = Number(quoteData['09. change']);
+    data.changePercent = Number(
+      quoteData['10. change percent'].replace('%', '')
+    );
+  }
+
+  return data;
+};
+
 export const prepareCompanyData = (
   searchResponse,
   quoteResponse,
@@ -27,16 +44,7 @@ export const prepareCompanyData = (
     data.domain = infoResponse[0].domain;
   }
 
-  if (Object.keys(quoteResponse).length) {
-    const quoteData = quoteResponse['Global Quote'];
-
-    data.price = Number(quoteData['05. price']);
-    data.tradingDay = quoteData['07. latest trading day'];
-    data.change = Number(quoteData['09. change']);
-    data.changePercent = Number(
-      quoteData['10. change percent'].replace('%', '')
-    );
-  }
+  Object.assign(data, extractQuoteData(quoteResponse));
 
   return data;
 };

@@ -1,8 +1,15 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import Api from 'api';
-import { ADD_COMPANY, addCompanyDone, addCompanyFailed } from 'actions';
-import { prepareCompanyData } from 'utils';
+import {
+  ADD_COMPANY,
+  addCompanyDone,
+  addCompanyFailed,
+  UPDATE_COMPANY,
+  updateCompanyDone,
+  updateCompanyFailed,
+} from 'actions';
+import { prepareCompanyData, extractQuoteData } from 'utils';
 
 export function* addCompany({
   symbol,
@@ -31,7 +38,23 @@ export function* addCompany({
   }
 }
 
-// single entry point to start all Sagas at once
+export function* updateCompany({ symbol }) {
+  try {
+    const quoteResponse = yield call(Api.get.bind(Api), '/query', {
+      params: {
+        function: 'GLOBAL_QUOTE',
+        symbol: symbol,
+      },
+    });
+    const data = extractQuoteData(quoteResponse);
+
+    yield put(updateCompanyDone(symbol, data));
+  } catch (error) {
+    yield put(updateCompanyFailed(symbol, error));
+  }
+}
+
 export default function* rootSaga() {
   yield takeLatest(ADD_COMPANY, addCompany);
+  yield takeLatest(UPDATE_COMPANY, updateCompany);
 }

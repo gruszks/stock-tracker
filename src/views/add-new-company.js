@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import loadable from '@loadable/component';
 import Downshift from 'downshift';
 import * as Yup from 'yup';
+import { withRouter } from 'react-router-dom';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { connect } from 'react-redux';
 
 import SiteContent from 'components/site-content';
-import SearchCompanies from 'components/search-companies';
 import { addCompany } from 'actions';
 import * as Styled from './add-new-company.styles';
 
+const SearchCompanies = loadable(() => import('components/search-companies'));
 const validationSchema = Yup.object().shape({
   symbol: Yup.string().required('This field is required'),
 });

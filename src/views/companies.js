@@ -1,13 +1,18 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import SiteContent from 'components/site-content';
 import CompanyList from 'components/company-list';
-import { deleteCompany } from 'actions.js';
+import { deleteCompany, updateCompany } from 'actions';
 
 class Companies extends PureComponent {
   componentDidMount() {
-    console.log('mounting');
+    const { data, onUpdateCompany } = this.props;
+
+    data.forEach(({ symbol }) => {
+      onUpdateCompany(symbol);
+    });
   }
 
   render() {
@@ -21,12 +26,19 @@ class Companies extends PureComponent {
   }
 }
 
+Companies.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  onDeleteCompany: PropTypes.func.isRequired,
+  onUpdateCompany: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   data: state.companies.data,
 });
 
 const mapDispatchToProps = {
   onDeleteCompany: deleteCompany,
+  onUpdateCompany: updateCompany,
 };
 
 export default connect(

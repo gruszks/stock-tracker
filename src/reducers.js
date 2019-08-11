@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import produce from 'immer';
 
-import { ADD_COMPANY_DONE, DELETE_COMPANY } from 'actions';
+import { ADD_COMPANY_DONE, DELETE_COMPANY, UPDATE_COMPANY_DONE } from 'actions';
 
 const initialState = {
   data: [],
@@ -19,6 +19,19 @@ const companies = (state = initialState, action) =>
           draft.data.findIndex((company) => company.symbol === action.symbol),
           1
         );
+        break;
+
+      case UPDATE_COMPANY_DONE:
+        const company = draft.data.find(
+          (company) => company.symbol === action.symbol
+        );
+
+        if (company) {
+          Object.keys(action.data).forEach((key) => {
+            company[key] = action.data[key];
+          });
+        }
+
         break;
 
       // no default

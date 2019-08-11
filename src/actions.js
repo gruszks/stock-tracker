@@ -1,23 +1,25 @@
-export const FETCH_COMPANY = 'FETCH_COMPANY';
-export const FETCH_COMPANY_DONE = 'FETCH_COMPANY_DONE';
-export const FETCH_COMPANY_FAILED = 'FETCH_COMPANY_FAILED';
+export const UPDATE_COMPANY = 'UPDATE_COMPANY';
+export const UPDATE_COMPANY_DONE = 'UPDATE_COMPANY_DONE';
+export const UPDATE_COMPANY_FAILED = 'UPDATE_COMPANY_FAILED';
 export const ADD_COMPANY = 'ADD_COMPANY';
 export const ADD_COMPANY_DONE = 'ADD_COMPANY_DONE';
 export const ADD_COMPANY_FAILED = 'ADD_COMPANY_FAILED';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
 
-export const fetchCompany = (symbol) => ({
-  type: FETCH_COMPANY,
+export const updateCompany = (symbol) => ({
+  type: UPDATE_COMPANY,
   symbol,
 });
 
-export const fetchCompanyDone = (data) => ({
-  type: FETCH_COMPANY_DONE,
+export const updateCompanyDone = (symbol, data) => ({
+  type: UPDATE_COMPANY_DONE,
+  symbol,
   data,
 });
 
-export const fetchCompanyFailed = (error) => ({
-  type: FETCH_COMPANY_FAILED,
+export const updateCompanyFailed = (symbol, error) => ({
+  type: UPDATE_COMPANY_FAILED,
+  symbol,
   error,
 });
 

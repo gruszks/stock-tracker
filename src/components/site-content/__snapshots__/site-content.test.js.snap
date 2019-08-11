@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <main
+    class="site-contentstyles__Main-sc-1a8hehg-0 bXKRmc"
+  >
+    <section>
+      <h2
+        class="site-contentstyles__Title-sc-1a8hehg-1 fNHMsa"
+      >
+        Site title
+      </h2>
+      text
+    </section>
+  </main>
+</DocumentFragment>
+`;

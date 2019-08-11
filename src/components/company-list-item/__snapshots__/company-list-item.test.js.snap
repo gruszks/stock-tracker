@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should renders correctly 1`] = `
+exports[`renders correctly 1`] = `
 <DocumentFragment>
   <li
     class="company-list-itemstyles__Item-sc-1snnccw-6 hXRuc"

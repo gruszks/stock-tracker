@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <header
+    class="site-headerstyles__Header-ml592c-0 fRAUiU"
+  >
+    <h1
+      class="site-headerstyles__Logo-ml592c-1 jEJIxJ"
+    >
+      <a
+        href="/companies/"
+      >
+        Stock Tracker
+      </a>
+    </h1>
+    <nav>
+      <ul
+        class="site-headerstyles__Menu-ml592c-2 gniZBi"
+      >
+        <li>
+          <a
+            href="/companies/add/"
+          >
+            Track new company
+          </a>
+        </li>
+        <li>
+          <a
+            href="/companies/"
+          >
+            Companies
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</DocumentFragment>
+`;

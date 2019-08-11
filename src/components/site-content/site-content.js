@@ -13,7 +13,7 @@ const SiteContent = ({ children, title }) => (
 );
 
 SiteContent.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default SiteContent;

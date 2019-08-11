@@ -5,7 +5,7 @@ import {
 } from './utils';
 
 describe('prepareCompanyNameForImageSearch', () => {
-  it('should return correct company name for image search', () => {
+  it('return correct company name for image and domain search', () => {
     const TEST_DATA = [
       ['Company INC.', 'Company'],
       ['Company inc', 'Company'],
@@ -61,7 +61,7 @@ describe('prepareCompanyData', () => {
     },
   ];
 
-  it('should return data about company', () => {
+  it('return data about company', () => {
     expect(
       prepareCompanyData(SEARCH_REPONSE, QUOTE_RESPONSE, INFO_RESPONSE)
     ).toStrictEqual({
@@ -101,7 +101,7 @@ describe('prepareCompanyData', () => {
     });
   });
 
-  it('should return data about company even when info and quote reponse is empty', () => {
+  it('return data about company even when info and quote reponse is empty', () => {
     expect(prepareCompanyData(SEARCH_REPONSE, {}, [])).toStrictEqual({
       change: null,
       changePercent: null,
@@ -121,7 +121,7 @@ describe('prepareCompanyData', () => {
 });
 
 describe('extractQuoteData', () => {
-  it('should return extract quote data', () => {
+  it('return extract quote data', () => {
     const quoteResponse = {
       'Global Quote': {
         '01. symbol': 'GOOG',

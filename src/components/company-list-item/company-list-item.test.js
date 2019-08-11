@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import CompanyListItem from './company-list-item';
 
-it('should renders correctly', () => {
+it('renders correctly', () => {
   const company = {
     change: 1.12,
     changePercent: 0.589,

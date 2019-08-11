@@ -57,5 +57,12 @@
     "prettier": "1.18.2",
     "prop-types": "15.7.2",
     "storybook-react-router": "1.0.5"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!src/**/*.stories.js"
+    ]
   }
 }

@@ -148,7 +148,7 @@ class SearchCompanies extends Component {
         this.setState({ data: undefined, error: e.message, loading: false });
         console.error(e);
       });
-  }, 200);
+  }, 300);
 
   fetchData = () => {
     if (this.cancelToken) {

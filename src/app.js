@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import loadable from '@loadable/component';
 
 import { GlobalStyle } from './app.styles';
@@ -15,7 +20,7 @@ const App = () => (
     <Router>
       <SiteHeader />
       <Switch>
-        <Route path="/" exact component={Companies} />
+        <Redirect from="/" to="/companies/" exact />
         <Route path="/companies/add/" component={AddNewCompany} />
         <Route path="/companies/" component={Companies} />
         <Route component={NoMatch} />

@@ -6,7 +6,7 @@ import * as Styled from './site-header.styles';
 const SiteHeader = () => (
   <Styled.Header>
     <Styled.Logo>
-      <Link to="/">Stock Tracker</Link>
+      <Link to="/companies/">Stock Tracker</Link>
     </Styled.Logo>
     <nav>
       <Styled.Menu>

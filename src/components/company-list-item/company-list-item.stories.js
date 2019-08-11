@@ -20,6 +20,30 @@ const company = {
   tradingDay: '2019-08-09',
 };
 
+const companyWithMissingData = {
+  ...company,
+  domain: null,
+  image: null,
+};
+
+const companyNegativePriceChange = {
+  ...company,
+  change: -5,
+  changePercent: -5.543543,
+};
+
+const companyPositivePriceChange = {
+  ...company,
+  change: 7.5455,
+  changePercent: 45.543543,
+};
+
+const companyNoPriceChange = {
+  ...company,
+  change: 0,
+  changePercent: 0,
+};
+
 storiesOf('Components/Company List Item', module)
   .addDecorator((story) => (
     <div style={{ maxWidth: 700, margin: 10 }}>
@@ -32,27 +56,27 @@ storiesOf('Components/Company List Item', module)
       onDeleteCompany={action('onDeleteCompany')}
     />
   ))
-  .add('without image', () => (
+  .add('with missing data', () => (
     <CompanyListItem
-      data={{ ...company, image: null }}
+      data={companyWithMissingData}
       onDeleteCompany={action('onDeleteCompany')}
     />
   ))
   .add('negative price change', () => (
     <CompanyListItem
-      data={{ ...company, change: -5, changePercent: -5.543543 }}
+      data={companyNegativePriceChange}
       onDeleteCompany={action('onDeleteCompany')}
     />
   ))
   .add('positive price change', () => (
     <CompanyListItem
-      data={{ ...company, change: 7.5455, changePercent: 45.543543 }}
+      data={companyPositivePriceChange}
       onDeleteCompany={action('onDeleteCompany')}
     />
   ))
   .add('no price change', () => (
     <CompanyListItem
-      data={{ ...company, change: 0, changePercent: 0 }}
+      data={companyNoPriceChange}
       onDeleteCompany={action('onDeleteCompany')}
     />
   ));

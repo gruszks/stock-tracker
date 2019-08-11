@@ -1,5 +1,5 @@
 export const prepareCompanyNameForImageSearch = (name) =>
-  name.replace(/\s(l\.p\.|inc\.|inc)/gi, '');
+  name.replace(/\s(l\.p\.|inc\.|inc)/i, '');
 
 export const prepareCompanyData = (
   searchResponse,
@@ -27,7 +27,7 @@ export const prepareCompanyData = (
     data.domain = infoResponse[0].domain;
   }
 
-  if (quoteResponse) {
+  if (Object.keys(quoteResponse).length) {
     const quoteData = quoteResponse['Global Quote'];
 
     data.price = Number(quoteData['05. price']);

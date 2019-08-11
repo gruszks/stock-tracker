@@ -1,10 +1,17 @@
 import { combineReducers } from 'redux';
 import produce from 'immer';
 
-import { ADD_COMPANY_DONE, DELETE_COMPANY, UPDATE_COMPANY_DONE } from 'actions';
+import {
+  ADD_COMPANY_DONE,
+  DELETE_COMPANY,
+  UPDATE_COMPANY_DONE,
+  ADD_COMPANY_FAILED,
+  CLEAR_ADD_COMPANY_FAILED,
+} from 'actions';
 
 const initialState = {
   data: [],
+  error: null,
 };
 
 const companies = (state = initialState, action) =>
@@ -12,6 +19,15 @@ const companies = (state = initialState, action) =>
     switch (action.type) {
       case ADD_COMPANY_DONE:
         draft.data.push(action.company);
+        draft.error = null;
+        break;
+
+      case ADD_COMPANY_FAILED:
+        draft.error = action.error;
+        break;
+
+      case CLEAR_ADD_COMPANY_FAILED:
+        draft.error = null;
         break;
 
       case DELETE_COMPANY:

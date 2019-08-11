@@ -4,6 +4,7 @@ export const UPDATE_COMPANY_FAILED = 'UPDATE_COMPANY_FAILED';
 export const ADD_COMPANY = 'ADD_COMPANY';
 export const ADD_COMPANY_DONE = 'ADD_COMPANY_DONE';
 export const ADD_COMPANY_FAILED = 'ADD_COMPANY_FAILED';
+export const CLEAR_ADD_COMPANY_FAILED = 'CLEAR_ADD_COMPANY_FAILED';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
 
 export const updateCompany = (symbol) => ({
@@ -49,4 +50,8 @@ export const addCompanyDone = (company) => ({
 export const addCompanyFailed = (error) => ({
   type: ADD_COMPANY_FAILED,
   error,
+});
+
+export const clearAddCompanyFailed = () => ({
+  type: CLEAR_ADD_COMPANY_FAILED,
 });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 import Downshift from 'downshift';
 import * as Yup from 'yup';
@@ -7,7 +8,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { connect } from 'react-redux';
 
 import SiteContent from 'components/site-content';
-import { addCompany } from 'actions';
+import { addCompany, clearAddCompanyFailed } from 'actions';
 import * as Styled from './add-new-company.styles';
 
 const SearchCompanies = loadable(() => import('components/search-companies'));
@@ -22,6 +23,10 @@ class AddNewCompany extends Component {
   downshiftRef = React.createRef();
   initialValues = { symbol: '', company: null };
 
+  componentWillUnmount() {
+    this.props.onClearAddCompanyFailed();
+  }
+
   handleSubmit = (values, { setSubmitting, resetForm }) => {
     const { onAddCompany } = this.props;
     const { symbol, company } = values;
@@ -35,14 +40,15 @@ class AddNewCompany extends Component {
         this.downshiftRef.current.clearSelection();
         setSubmitting(false);
       },
-      // TODO: Better handle the errors
       () => {
+        this.setState({ company: null });
         setSubmitting(false);
       }
     );
   };
 
   render() {
+    const { error, companiesSymbols } = this.props;
     const { company } = this.state;
 
     return (
@@ -53,6 +59,7 @@ class AddNewCompany extends Component {
             list.
           </Styled.SuccessAlert>
         )}
+        {error && <Styled.ErrorAlert>{error}</Styled.ErrorAlert>}
         <Formik
           enableReinitialize={false}
           initialValues={this.initialValues}
@@ -118,7 +125,7 @@ class AddNewCompany extends Component {
                                 );
                               }
 
-                              // It will show to the user when we exceed API calls limit
+                              // It will show error about API calls limit
                               if (Note) {
                                 return (
                                   <Styled.SearchListItem>
@@ -135,24 +142,31 @@ class AddNewCompany extends Component {
                                 );
                               }
 
-                              return items.map((item, index) => (
-                                <Styled.SearchListItem
-                                  highlighted={highlightedIndex === index}
-                                  selected={
-                                    selectedItem &&
-                                    selectedItem['1. symbol'] ===
+                              return items
+                                .filter(
+                                  (item) =>
+                                    !companiesSymbols.includes(
                                       item['1. symbol']
-                                  }
-                                  {...getItemProps({
-                                    key: item['1. symbol'],
-                                    index,
-                                    item,
-                                  })}
-                                >
-                                  {item['1. symbol']} | {item['2. name']} |{' '}
-                                  {item['4. region']} | {item['8. currency']}
-                                </Styled.SearchListItem>
-                              ));
+                                    )
+                                )
+                                .map((item, index) => (
+                                  <Styled.SearchListItem
+                                    highlighted={highlightedIndex === index}
+                                    selected={
+                                      selectedItem &&
+                                      selectedItem['1. symbol'] ===
+                                        item['1. symbol']
+                                    }
+                                    {...getItemProps({
+                                      key: item['1. symbol'],
+                                      index,
+                                      item,
+                                    })}
+                                  >
+                                    {item['1. symbol']} | {item['2. name']} |{' '}
+                                    {item['4. region']} | {item['8. currency']}
+                                  </Styled.SearchListItem>
+                                ));
                             }}
                           </SearchCompanies>
                         </Styled.SearchList>
@@ -183,13 +197,26 @@ class AddNewCompany extends Component {
   }
 }
 
+AddNewCompany.propTypes = {
+  error: PropTypes.string,
+  companiesSymbols: PropTypes.arrayOf(PropTypes.string),
+  onAddCompany: PropTypes.func,
+  onClearAddCompanyFailed: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({
+  error: state.companies.error,
+  companiesSymbols: state.companies.data.map((company) => company.symbol),
+});
+
 const mapDispatchToProps = {
   onAddCompany: addCompany,
+  onClearAddCompanyFailed: clearAddCompanyFailed,
 };
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(AddNewCompany)
 );

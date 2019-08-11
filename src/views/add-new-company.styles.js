@@ -87,11 +87,22 @@ export const SearchListItem = styled.li`
     `}
 `;
 
-export const SuccessAlert = styled.div`
-  color: #155724;
-  background-color: #d4edda;
+export const Alert = styled.div`
   padding: 20px 10px;
   margin-bottom: 15px;
-  border: 1px solid #c3e6cb;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 4px;
+`;
+
+export const SuccessAlert = styled(Alert)`
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+`;
+
+export const ErrorAlert = styled(Alert)`
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 `;

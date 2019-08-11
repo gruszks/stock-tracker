@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import debounce from 'lodash/debounce';
+import pick from 'lodash/pick';
 
 import App from './app';
 import configureStore from './store';
@@ -14,7 +15,10 @@ const store = configureStore(persistedState);
 
 store.subscribe(
   debounce(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+    const state = store.getState();
+    const stateToStore = pick(state, 'companies.data');
+
+    localStorage.setItem('reduxState', JSON.stringify(stateToStore));
   }, 100)
 );
 

@@ -28,6 +28,11 @@ export function* addCompany({
       }),
       call(Api.getCompanyImage.bind(Api), companyName),
     ]);
+
+    if (quoteResponse['Note']) {
+      throw quoteResponse['Note'];
+    }
+
     const company = prepareCompanyData(data, quoteResponse, infoResponse);
 
     yield put(addCompanyDone(company));

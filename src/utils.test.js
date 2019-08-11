@@ -1,4 +1,8 @@
-import { prepareCompanyNameForImageSearch, prepareCompanyData } from './utils';
+import {
+  prepareCompanyNameForImageSearch,
+  prepareCompanyData,
+  extractQuoteData,
+} from './utils';
 
 describe('prepareCompanyNameForImageSearch', () => {
   it('should return correct company name for image search', () => {
@@ -113,5 +117,37 @@ describe('prepareCompanyData', () => {
       timezone: 'UTC-04',
       tradingDay: null,
     });
+  });
+});
+
+describe('extractQuoteData', () => {
+  it('should return extract quote data', () => {
+    const quoteResponse = {
+      'Global Quote': {
+        '01. symbol': 'GOOG',
+        '02. open': '1197.9900',
+        '03. high': '1203.8800',
+        '04. low': '1183.6030',
+        '05. price': '1188.0100',
+        '06. volume': '1013989',
+        '07. latest trading day': '2019-08-09',
+        '08. previous close': '1204.8000',
+        '09. change': '-16.7900',
+        '10. change percent': '-1.3936%',
+      },
+    };
+
+    expect(extractQuoteData(quoteResponse)).toStrictEqual({
+      change: -16.79,
+      changePercent: -1.3936,
+      price: 1188.01,
+      tradingDay: '2019-08-09',
+    });
+  });
+
+  it('should return empty object when response is empty', () => {
+    const quoteResponse = {};
+
+    expect(extractQuoteData(quoteResponse)).toStrictEqual({});
   });
 });

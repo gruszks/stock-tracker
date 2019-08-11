@@ -1,6 +1,13 @@
 # Stock Tracker
 This is a really simple application that allows track financial data for companies.
 
+## Info about API key
+
+Please keep in mind that we aren't using premium API key and sometimes you will see this message:
+```
+Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.
+```
+
 ## Configuration
 
 Inside `.env` file just set the `REACT_APP_API_KEY` to correct API key. You can get it from [here](https://www.alphavantage.co/support/#api-key).

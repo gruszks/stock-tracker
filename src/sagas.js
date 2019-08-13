@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 import Api from 'api';
 import {
@@ -61,5 +61,5 @@ export function* updateCompany({ symbol }) {
 
 export default function* rootSaga() {
   yield takeLatest(ADD_COMPANY, addCompany);
-  yield takeLatest(UPDATE_COMPANY, updateCompany);
+  yield takeEvery(UPDATE_COMPANY, updateCompany);
 }
